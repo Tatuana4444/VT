@@ -1,0 +1,16 @@
+com.epam.shop.command
+com.epam.shop.command.impl
+com.epam.shop.command.impl.admin
+com.epam.shop.command.impl.client
+com.epam.shop.controller
+com.epam.shop.dao
+com.epam.shop.entity
+com.epam.shop.entity.pages
+com.epam.shop.entity.pages.impl
+com.epam.shop.exception
+com.epam.shop.parser
+com.epam.shop.reader
+com.epam.shop.service
+com.epam.shop.singelton
+com.epam.shop.view
+com.epam.shop.writer

@@ -1,0 +1,76 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://onlineShop.com/shop"
+           targetNamespace="http://onlineShop.com/shop"
+           elementFormDefault="qualified">
+
+
+    <xs:element name="onlineShop" type="tns:onlineShop"/>
+
+    <xs:complexType name="Product" abstract="true">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="price">
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:minExclusive value="0"/>
+                    <xs:maxInclusive value="1000"/>
+                </xs:restriction>
+            </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="User" abstract="true">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="login" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="role">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="client"/>
+                        <xs:enumeration value="admin"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Order" abstract="true">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="product" type="tns:Product"/>
+            <xs:element name="quantity" type="xs:int"/>
+            <xs:element name="userId" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Orders">
+        <xs:sequence>
+            <xs:element name="orders" type="tns:Order" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Users">
+        <xs:sequence>
+            <xs:element name="user" type="tns:User" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Products">
+        <xs:sequence>
+            <xs:element name="product" type="tns:Product" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="onlineShop">
+        <xs:sequence>
+            <xs:element name="product" type="tns:Products"/>
+            <xs:element name="user" type="tns:Users"/>
+            <xs:element name="basket" type="tns:Orders"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
